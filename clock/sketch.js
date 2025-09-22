@@ -42,9 +42,9 @@ function draw() {
   for (i=0;i<12;i++) {
     noStroke()
     if (i==floor((h%12)-1)) {
-      fill(color('#f00f'))
+      fill(color('#f00'))
     } else {
-      fill(color('#ffff'))
+      fill(color('#fff'))
     }
     text(
       ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'][i],
