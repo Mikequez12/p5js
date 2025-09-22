@@ -40,11 +40,11 @@ function draw() {
   textSize(20)
   textAlign(CENTER,CENTER)
   for (i=0;i<12;i++) {
-    noStroke()
-    if (i==floor((h%12)-1)) {
-      fill(color('#f00'))
+    noStroke();
+    if (i==floor((h-1)%12)) {
+      fill(color('red'))
     } else {
-      fill(color('#fff'))
+      fill(color('white'))
     }
     text(
       ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'][i],
