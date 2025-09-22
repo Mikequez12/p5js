@@ -5,5 +5,8 @@ html, body {
 }
 canvas {
   display: block;
-  background: #111
+  background: #111;
+  position: absolute;
+  left: calc(50% - 200px);
+  top: calc(50% - 200px);
 }
