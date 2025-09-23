@@ -3,13 +3,27 @@ function setup() {
 }
 
 function draw() {
+  noFill()
+  strokeWeight(1)
+  stroke(color('white'))
+  fill(color('white'))
   textFont('serif')
-  clear()
+  background(color('black'))
+  drawingContext.shadowBlur = 50;
+  drawingContext.shadowColor = color('white');
+  for (let i = 0; i < 360/5; i++) {
+    line(
+      sin(i/5)*width/2.2+width/2,
+      cos(i/5)*width/2.2+height/2,
+      sin((i+1)/5)*width/2.2+width/2,
+      cos((i+1)/5)*width/2.2+height/2,
+    )
+  }
   let now = new Date()
   let s = now.getSeconds()+now.getMilliseconds()/1000
   let m = now.getMinutes()+s/60
   let h = now.getHours()+m/60
-  drawingContext.shadowBlur = 5;
+  drawingContext.shadowBlur = 50;
   drawingContext.shadowColor = color('red');
   stroke(color('red'))
   strokeWeight(1)
@@ -41,6 +55,12 @@ function draw() {
   textAlign(CENTER,CENTER)
   for (i=0;i<12;i++) {
     noStroke();
+    fill(color('black'))
+    circle(
+      width/11*(-5)*sin(radians(180+(i-11)/12*360))+width/2,
+      height/11*5*cos(radians(180+(i-11)/12*360))+height/2,
+      width/10
+    )
     if (i==floor((h-1)%12)) {
       fill(color('red'))
     } else {
@@ -55,13 +75,13 @@ function draw() {
   for (i=0;i<5*12;i++) {
     noStroke()
     drawingContext.shadowBlur = 0;
-    fill(color('white'))
-    d = max(0,3-abs(i-m))**2*2
+    d = max(0,3-abs(i-m))**2*2;
+    let circularDist = min(abs(i - m), 60 - abs(i - m))
+    fill(lerpColor(color('white'),color('black'),(circularDist/10)))
     if (i==floor(m)) {
       fill(color('red'))
     }
-    let circularDist = min(abs(i - m), 60 - abs(i - m))
-    let sizeFactor = (sqrt(max(0, 12 - circularDist))/1)**2
+    let sizeFactor = (sqrt(max(0, 12 - circularDist))/1)**2*0.8
     textSize(sizeFactor)
     if (sizeFactor>0) {
       text(
@@ -70,25 +90,17 @@ function draw() {
         (height/11*(-4.3))*cos(radians(i/12/5*360))+height/2
       )
     }
-    if (i%5==0) {
-      continue
-    }
-    stroke(color('gray'));
-    point(
-      width/11*(-5)*sin(radians(i/12/5*360))+width/2,
-      height/11*5*cos(radians(i/12/5*360))+height/2
-    )
   }
   for (i=0;i<5*12;i++) {
     noStroke()
     drawingContext.shadowBlur = 0;
-    fill(color('#fffa'))
-    d = max(0,3-abs(i-s))**2*2
-    if (i==floor(s)) {
-      fill(color('#f00a'))
-    }
     let circularDist = min(abs(i - s), 60 - abs(i - s))
-    let sizeFactor = (sqrt(max(0, 12 - circularDist))/1)**2/1.2
+    fill(lerpColor(color('white'),color('black'),(circularDist/10)))
+    d = max(0,3-abs(i-s))**2*2
+    if (i==round(s)) {
+      fill(color('#f00'))
+    }
+    let sizeFactor = (sqrt(max(0, 12 - circularDist))/1)**2
     textSize(sizeFactor)
     if (sizeFactor>0) {
       text(
@@ -97,13 +109,5 @@ function draw() {
         (height/11*(-3.8))*cos(radians(i/12/5*360))+height/2
       )
     }
-    if (i%5==0) {
-      continue
-    }
-    stroke(color('gray'));
-    point(
-      width/11*(-5)*sin(radians(i/12/5*360))+width/2,
-      height/11*5*cos(radians(i/12/5*360))+height/2
-    )
   }
 }
