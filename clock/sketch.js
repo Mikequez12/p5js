@@ -112,8 +112,8 @@ function draw() {
     if (sizeFactor>0) {
       text(
         (i+1)%60,
-        (width/11*(3.8))*sin(radians((i+.5)/12/5*360))+width/2,
-        (height/11*(-3.8))*cos(radians((i+.5)/12/5*360))+height/2
+        (width/11*(3.8))*sin(radians((i-.5)/12/5*360))+width/2,
+        (height/11*(-3.8))*cos(radians((i-.5)/12/5*360))+height/2
       )
     }
   }
