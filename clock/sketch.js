@@ -111,7 +111,7 @@ function draw() {
     textSize(sizeFactor)
     if (sizeFactor>0) {
       text(
-        i+1,
+        (i+1)%60,
         (width/11*(3.8))*sin(radians(i/12/5*360))+width/2,
         (height/11*(-3.8))*cos(radians(i/12/5*360))+height/2
       )
